@@ -17,9 +17,9 @@ function advanceStage() {
         document.getElementById("timerHeader").innerHTML = "Time Left to Submit Work";
         displayModal("Your Exam Begins Now", "Start working on exam question 1 now.", 0);
         if (questions.length == 2) {
-            startTimer(25);
+            startTimer(30);
         } else {
-            startTimer(40);
+            startTimer(50);
         }
     } else if (stage == 2) {
         if (questions.length == 2) {
@@ -29,7 +29,7 @@ function advanceStage() {
             document.getElementById("submission").classList.remove("hidden");
             document.getElementById("timerHeader").innerHTML = "Time Left to Submit Work";
             displayModal("Question 2 Begins Now", "Question 1 has finished. Start work on question 2 now.", 0);
-            startTimer(15);
+            startTimer(20);
         } else {
             document.getElementById("timerHeader").innerHTML = "Time Until Your Exam Starts";
             endTest();

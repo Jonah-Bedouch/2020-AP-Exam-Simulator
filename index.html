@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AP Exam Simulator</title>
+</head>
+
+<body>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-header">
+                <strong>
+                    <p id="mHeader">Submit Your Response Now</p>
+                </strong>
+            </div>
+            <div class="modal-body">
+                <p id="mContent">{}</p>
+            </div>
+            <div class="modal-footer">
+                <div id="f0">
+                    <button id="mBtn" class="btn-s">Continue</button>
+                </div>
+                <div id="f1">
+                    <button id="closeBtn" class="btn">Cancel</button>
+                    <button id="smBtn" class="btn-s">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="top">
+        <h4 class="pageTitle">AP Exam Simulator <span class="light">V0.1</span></h4>
+    </div>
+
+    <div id="prepPane" class="pane pane-r">
+        <h3>Prepare an Exam</h3>
+        <p>Welcome to the 2020 Unofficial AP Exam Simulator! This is based off of the AP Demo released by Collegeboard,
+            and should emulate (fairly well) the examination process for any questions that you desire to test on.
+            Upload one or two questions as a PDF and begin the exam. The timer will immediately start going. When it is
+            complete, if there is a second question, you will be transitioned to it automatically. The submission
+            process is identical to that of the AP Exam, with the caveat that <strong>removal of individual images from
+                the image upload screen is not supported</strong>, unlike on the official AP Exam. It should also be
+            noted that this page is <strong>only built to run on computers using Chrome</strong>, meaning that using
+            this system to prep for exams where you will upload an image (through a phone) is <strong>not
+                reccomended</strong>. The system does not retain questions or exam responses past your session
+            (refresh), so ensure that you have a copy of everything you need on your system (IE: Don't delete your
+            response if you need to turn it in to a teacher, and don't delete the question off of your computer until
+            you are done responding to it).</p>
+        <p>Upload PDF for Question 1 (REQUIRED)</p>
+        <label for="q1In" class="btn">Browse For File</label>
+        <input id="q1In" class="hidden" type="file" accept="application/pdf">
+        <output id="q1InRep"></output>
+        <p>Upload PDF for Question 2</p>
+        <label for="q2In" class="btn">Browse For File</label>
+        <input id="q2In" class="hidden" type="file" accept="application/pdf">
+        <output id="q2InRep"></output>
+        <div class="spacer-s"></div>
+        <button id="start" class="btn-s">Begin Exam</button>
+    </div>
+
+    <div id="q1Pane" class="pane hidden">
+        <h3 class="slab">Question 1</h3>
+        <output id="q1"></output>
+    </div>
+
+    <div id="q2Pane" class="pane hidden">
+        <h3 class="slab">Question 2</h3>
+        <output id="q2"></output>
+    </div>
+
+    <div id="attachPane" class="pane pane-r hidden">
+        <a id="attachReturn" class="return"><strong>&#10094; Back to Question</strong> </a>
+        <h3 class="slab iMargin">Attach Your Response</h3>
+        <label class="container"><strong>Attatch Text File</strong>
+            <input type="radio" checked="checked" id="text">
+            <span class="checkmark"></span>
+        </label>
+        <label class="container"><strong>Attach Photos</strong>
+            <input type="radio" id="photo">
+            <span class="checkmark"></span>
+        </label>
+        <div id="textInfo">
+            <output id="textSubmitOut" class="attached"></output>
+            <h4 class="reqs">Requirements</h4>
+            <ul>
+                <li><strong>Include your AP ID and your initials at the top of the page.</strong></li>
+                <li>You can attach only 1 text file per exam question.</li>
+                <li>Minimum file size: 1KB</li>
+                <li>Maximum file size: 15MB</li>
+                <li>Accepted file formats: .txt, .doc, .docx, .pdf, .odt</li>
+                <li><strong>NOTE: </strong>This practice system does not enforce file size.</li>
+            </ul>
+        </div>
+        <div id="photoInfo" class="hidden">
+            <output id="photoSubmitOut" class="attached"></output>
+            <h4 class="reqs">Requirements</h4>
+            <ul>
+                <li>If your response is longer than 1 page, you can attach up to 5 photos</li>
+                <li>Take 1 photo for each page, write only on 1 side, and make sure the entire page is in the shot</li>
+                <li><strong>Write your AP ID, your initials, and the page number at the top of each page.</strong></li>
+                <li>You can only attach 1 photo at a time. <strong>Do not hit "Submit" until you've attacked all your photos.</strong></li>
+                <li>Attach your photos in order (page 1, then page 2, etc.).</li>
+                <li>Accepted file formats: .png, .jpg, .jpeg</li>
+                <li>Minimum file size: 10KB</li>
+                <li>Maximum file size: 25MB</li>
+                <li><strong>NOTE: </strong>This practice system does not enforce file size.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="pastePane" class="pane pane-r hidden">
+        <a id="pasteReturn" class="return"><strong>&#10094; Back to Question</strong> </a>
+        <h3 class="slab">Paste Your Response</h3>
+        <p>Draft your response in a different application, then paste it here. <strong>You cannot type
+                directly into the
+                field.</strong></p>
+        <ul>
+            <li><strong>Include your AP ID and your initials at the top of the page.</strong></li>
+            <li>If you make a mistake, hit "Clear Field", and try again.</li>
+            <li>Check the formatting and content in your pasted response. If it's wrong or incomplete, hit
+                "Clear
+                Field", go back to your source doc, correct the issue, and copy and paste again.</li>
+            <li>When you're done, hit "Submit"</li>
+        </ul>
+        <textarea id="uploadBox" class="box" cols="30" rows="10"></textarea>
+        <button id="resetBox" class=btn>Clear Field</button>
+    </div>
+
+    <div id="completePane" class="pane pane-r hidden">
+        <h3 class="slab">You Have Completed Your Practice Exam</h3>
+        <p>At this point, your scores would normally have been submitted to Collegeboard. Instead, they have been disgarded.</p>
+        <p>This tool is open source! View the source code <a href="">here</a>.</p>
+        <p>Need to keep preparing?</p>
+        <button class="btn-s" id="newExam">New Exam</button>
+    </div>
+
+    <div id="intermediatePane" class="pane pane-r hidden">
+        <h3 class="slab">Question 2 Will Begin Soon</h3>
+        <p>Question 2 will automatically start as soon as the timer reaches zero. <strong>Do not refresh the page or hit the back button.</strong></p>
+        <p>You would normally be provided with submission guidelines here. I have not provided these. Sorry.</p>
+        <p>As a convenience feature, the below button will allow you to skip the remainder of this waiting period. If you wish to use this, I advise taking a moment and ensuring that you are prepared. The next question will begin immediately on click.</p>
+        <button class="btn-s" id="skipWait">Skip Wait</button>
+    </div>
+
+    <div class="spacer-b"></div>
+
+    <div class="footer">
+        <div class="time">
+            <p id="timerHeader" class="timerH">Time Until Your Exam Starts</p>
+            <h1 id="timer">00:00:00</h1>
+        </div>
+        <div id="submission" class="submission hidden">
+            <div id="subselect">
+                <button class="btn" id="attachNav">Attach Response</button>
+                <button class="btn" id="pasteNav">Paste Response</button>
+            </div>
+            <div id="attachsub" class="hidden">
+                <div id="textsub" class="">
+                    <label for="textSubmission" class="btn">Browse For File</label>
+                    <input id="textSubmission" class="hidden" type="file"
+                        accept=".txt, .doc, .docx, .pdf, .odt">
+                    <button class="btn-s" id="textSubmitBtn" disabled>Submit</button>
+                </div>
+                <div id="photosub" class="hidden">
+                    <label for="photoSubmission" class="btn">Attach Photo</label>
+                    <input id="photoSubmission" class="hidden" type="file"
+                        accept=".png, .jpg, .jpeg">
+                    <button class="btn-s" id="photoSubmitBtn" disabled>Submit</button>
+                </div>
+            </div>
+            <div id="pastesub" class="hidden">
+                <button class="btn-s" id="pasteSubmitBtn" disabled>Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/uploadManager.js" defer></script>
+    <script src="js/textboxManager.js" defer></script>
+    <script src="js/modalManager.js" defer></script>
+    <script src="js/stageManager.js" defer></script>
+    <script src="js/timer.js" defer></script>
+</body>
+
+</html>

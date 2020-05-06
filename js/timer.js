@@ -48,5 +48,5 @@ function startTimer(duration) {
             clearInterval(interval);
         }
 
-    }, 50);
+    }, 1000);
 }

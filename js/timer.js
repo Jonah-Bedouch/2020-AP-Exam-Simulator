@@ -26,7 +26,7 @@ function startTimer(duration) {
 
         console.log(diff);
 
-        if (diff <= 300) {
+        if (diff <= 300 && !timeObject.classList.contains("warn")) {
             if (stage != 0) {
                 timeObject.classList.add("warn");
                 if (stage == submits) {

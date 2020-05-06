@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/style.css" />
@@ -37,30 +38,30 @@
         </div>
     </div>
     <div id="top">
-        <h4 class="pageTitle">AP Exam Simulator <span class="light">V0.1</span></h4>
+        <h4 class="pageTitle">AP Exam Simulator <span class="light">V0.2</span></h4>
     </div>
 
     <div id="prepPane" class="pane pane-r">
         <h3>Prepare an Exam</h3>
         <p>Welcome to the 2020 Unofficial AP Exam Simulator! This is based off of the AP Demo released by Collegeboard,
             and should emulate (fairly well) the examination process for any questions that you desire to test on.
-            Upload one or two questions as a PDF and begin the exam. The timer will immediately start going. When it is
-            complete, if there is a second question, you will be transitioned to it automatically. The submission
-            process is identical to that of the AP Exam, with the caveat that <strong>removal of individual images from
-                the image upload screen is not supported</strong>, unlike on the official AP Exam. It should also be
-            noted that this page is <strong>only built to run on computers using Chrome</strong>, meaning that using
-            this system to prep for exams where you will upload an image (through a phone) is <strong>not
-                reccomended</strong>. The system does not retain questions or exam responses past your session
-            (refresh), so ensure that you have a copy of everything you need on your system (IE: Don't delete your
-            response if you need to turn it in to a teacher, and don't delete the question off of your computer until
+            Upload one or two questions as an Image and begin the exam. The timer will immediately start going. When it
+            is complete, if there is a second question, you will be transitioned to it automatically. The submission
+            process is identical to that of the AP Exam, with the caveat that the system does not manage file sizes,
+            unlike on the official AP Exam. It should also be noted that this page is <strong>only built to run on
+            computers using Chrome</strong>, however using this system to prep for exams where you will upload
+            an image (through a phone) is fine (But uploading documents or pasting on mobile is buggy). The system does
+            not retain questions or exam responses past your session (refresh), so ensure that you have a copy of
+            everything you need on your system (IE: Don't delete your response if you need to turn it in to a teacher,
+            and don't delete the question off of your computer until
             you are done responding to it).</p>
-        <p>Upload PDF for Question 1 (REQUIRED)</p>
+        <p>Upload Image for Question 1 (REQUIRED)</p>
         <label for="q1In" class="btn">Browse For File</label>
-        <input id="q1In" class="hidden" type="file" accept="application/pdf">
+        <input id="q1In" class="hidden" type="file" accept="image/*">
         <output id="q1InRep"></output>
-        <p>Upload PDF for Question 2</p>
+        <p>Upload Image for Question 2</p>
         <label for="q2In" class="btn">Browse For File</label>
-        <input id="q2In" class="hidden" type="file" accept="application/pdf">
+        <input id="q2In" class="hidden" type="file" accept="image/*">
         <output id="q2InRep"></output>
         <div class="spacer-s"></div>
         <button id="start" class="btn-s">Begin Exam</button>
@@ -106,7 +107,8 @@
                 <li>If your response is longer than 1 page, you can attach up to 5 photos</li>
                 <li>Take 1 photo for each page, write only on 1 side, and make sure the entire page is in the shot</li>
                 <li><strong>Write your AP ID, your initials, and the page number at the top of each page.</strong></li>
-                <li>You can only attach 1 photo at a time. <strong>Do not hit "Submit" until you've attacked all your photos.</strong></li>
+                <li>You can only attach 1 photo at a time. <strong>Do not hit "Submit" until you've attacked all your
+                        photos.</strong></li>
                 <li>Attach your photos in order (page 1, then page 2, etc.).</li>
                 <li>Accepted file formats: .png, .jpg, .jpeg</li>
                 <li>Minimum file size: 10KB</li>
@@ -136,17 +138,22 @@
 
     <div id="completePane" class="pane pane-r hidden">
         <h3 class="slab">You Have Completed Your Practice Exam</h3>
-        <p>At this point, your scores would normally have been submitted to Collegeboard. Instead, they have been disgarded.</p>
-        <p>This tool is open source! View the source code <a href="https://github.com/Jonah-Bedouch/2020-AP-Exam-Simulator">here</a>.</p>
+        <p>At this point, your scores would normally have been submitted to Collegeboard. Instead, they have been
+            disgarded.</p>
+        <p>This tool is open source! View the source code <a
+                href="https://github.com/Jonah-Bedouch/2020-AP-Exam-Simulator">here</a>.</p>
         <p>Need to keep preparing?</p>
         <button class="btn-s" id="newExam">New Exam</button>
     </div>
 
     <div id="intermediatePane" class="pane pane-r hidden">
         <h3 class="slab">Question 2 Will Begin Soon</h3>
-        <p>Question 2 will automatically start as soon as the timer reaches zero. <strong>Do not refresh the page or hit the back button.</strong></p>
+        <p>Question 2 will automatically start as soon as the timer reaches zero. <strong>Do not refresh the page or hit
+                the back button.</strong></p>
         <p>You would normally be provided with submission guidelines here. I have not provided these. Sorry.</p>
-        <p>As a convenience feature, the below button will allow you to skip the remainder of this waiting period. If you wish to use this, I advise taking a moment and ensuring that you are prepared. The next question will begin immediately on click.</p>
+        <p>As a convenience feature, the below button will allow you to skip the remainder of this waiting period. If
+            you wish to use this, I advise taking a moment and ensuring that you are prepared. The next question will
+            begin immediately on click.</p>
         <button class="btn-s" id="skipWait">Skip Wait</button>
     </div>
 
@@ -165,14 +172,12 @@
             <div id="attachsub" class="hidden">
                 <div id="textsub" class="">
                     <label for="textSubmission" class="btn">Browse For File</label>
-                    <input id="textSubmission" class="hidden" type="file"
-                        accept=".txt, .doc, .docx, .pdf, .odt">
+                    <input id="textSubmission" class="hidden" type="file" accept=".txt, .doc, .docx, .pdf, .odt">
                     <button class="btn-s" id="textSubmitBtn" disabled>Submit</button>
                 </div>
                 <div id="photosub" class="hidden">
                     <label for="photoSubmission" class="btn">Attach Photo</label>
-                    <input id="photoSubmission" class="hidden" type="file"
-                        accept=".png, .jpg, .jpeg">
+                    <input id="photoSubmission" class="hidden" type="file" accept=".png, .jpg, .jpeg">
                     <button class="btn-s" id="photoSubmitBtn" disabled>Submit</button>
                 </div>
             </div>

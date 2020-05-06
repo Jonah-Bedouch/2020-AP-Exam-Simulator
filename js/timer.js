@@ -1,12 +1,22 @@
 var forceStop = false;
 var advance = false;
 function startTimer(duration) {
-    var timer = duration*60, hours, minutes, seconds;
+    duration = duration*60;
+
+    var start = Date.now(),
+        diff,
+        hours,
+        minutes,
+        seconds;
+
     var timeObject = document.getElementById("timer");
-    var interval = setInterval(function () {
-        hours = parseInt(timer / 3600, 10);
-        minutes = parseInt((timer-(3600*hours)) / 60, 10);
-        seconds = parseInt(timer % 60, 10);
+
+    function timer() {
+        diff = duration - (((Date.now() - start)/1000) | 0);
+
+        hours = (diff / 3600) | 0;
+        minutes = ((diff-(3600*hours)) / 60) | 0;
+        seconds = (diff % 60) | 0;
 
         hours = hours < 10 ? "0" + hours : hours;
         minutes = minutes < 10 ? "0" + minutes : minutes;
@@ -14,9 +24,9 @@ function startTimer(duration) {
 
         timeObject.innerHTML = hours + ":" + minutes + ":" + seconds;
 
-        --timer;
+        console.log(diff);
 
-        if (timer <= 300 && !timeObject.classList.contains("warn")) {
+        if (diff <= 300) {
             if (stage != 0) {
                 timeObject.classList.add("warn");
                 if (stage == submits) {
@@ -26,10 +36,9 @@ function startTimer(duration) {
             }
         }
 
-        if (timer < 1) {
-            timeObject.classList.remove("warn");
-            timeObject.innerHTML = "00:00:00";
+        if (diff <= 0) {
             advanceStage();
+            timeObject.classList.remove("warn");
             clearInterval(interval);
         }
 
@@ -47,6 +56,8 @@ function startTimer(duration) {
             advanceStage();
             clearInterval(interval);
         }
+    }
 
-    }, 1000);
+    timer();
+    var interval = setInterval(timer, 1000);
 }

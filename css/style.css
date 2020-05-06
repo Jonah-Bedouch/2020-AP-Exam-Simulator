@@ -25,7 +25,7 @@ button {
 .pane {
     margin-left: var(--s-margin);
     margin-right: var(--s-margin);
-    height: 120vh;
+    height: auto;
 }
 
 .pane-r {

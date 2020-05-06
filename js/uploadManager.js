@@ -16,7 +16,7 @@ function upload(evt, out, render, renderOut, check, q, p) {
         reader.onload = ((file) => {
           return (e) => {
             var span = document.createElement("span");
-            span.innerHTML = `<iframe src="${e.target.result}" width="100%" height="100%"></iframe>`;
+            span.innerHTML = `<img src="${e.target.result}" width="100%" style="text-align: center;"></img>`;
             document.getElementById(renderOut).insertBefore(span, null);
             if (q != 0) {
               questions.push(q);
@@ -113,10 +113,10 @@ function del(inRef, out, renderOut, q, p) {
 }
 
 document.getElementById("q1In").addEventListener("change", (evt) => {
-  upload(evt, 'q1InRep', true, 'q1', "application.pdf", 1, false);
+  upload(evt, 'q1InRep', true, 'q1', "image.*", 1, false);
 }, false);
 document.getElementById("q2In").addEventListener("change", (evt) => {
-  upload(evt, 'q2InRep', true, 'q2', "application.pdf", 2, false);
+  upload(evt, 'q2InRep', true, 'q2', "image.*", 2, false);
 }, false);
 document.getElementById("textSubmission").addEventListener("change", (evt) => {
   upload(evt, 'textSubmitOut', false, '', "", 0, false);

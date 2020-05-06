@@ -14,6 +14,7 @@ function advanceStage() {
         document.getElementById("prepPane").classList.add("hidden");
         document.getElementById("q1Pane").classList.remove("hidden");
         document.getElementById("submission").classList.remove("hidden");
+        document.getElementById("timerHeader").innerHTML = "Time Left to Submit Work";
         displayModal("Your Exam Begins Now", "Start working on exam question 1 now.", 0);
         if (questions.length == 2) {
             startTimer(25);
@@ -26,9 +27,11 @@ function advanceStage() {
             document.getElementById("intermediatePane").classList.add("hidden");
             document.getElementById("q2Pane").classList.remove("hidden");
             document.getElementById("submission").classList.remove("hidden");
+            document.getElementById("timerHeader").innerHTML = "Time Left to Submit Work";
             displayModal("Question 2 Begins Now", "Question 1 has finished. Start work on question 2 now.", 0);
             startTimer(15);
         } else {
+            document.getElementById("timerHeader").innerHTML = "Time Until Your Exam Starts";
             endTest();
         }
     } else {
@@ -170,6 +173,7 @@ function submit() {
             document.getElementById("textsub").classList.remove("hidden");
             document.getElementById("subselect").classList.remove("hidden");
             document.getElementById("intermediatePane").classList.remove("hidden");
+            document.getElementById("timerHeader").innerHTML = "Time Left Until Question 2";
         } else {
             forceStop = true;
             endTest();

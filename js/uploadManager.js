@@ -16,7 +16,7 @@ function upload(evt, out, render, renderOut, check, q, p) {
         reader.onload = ((file) => {
           return (e) => {
             var span = document.createElement("span");
-            span.innerHTML = `<iframe src="${e.target.result}" title="test" width="100%" height="100%"></iframe>`;
+            span.innerHTML = `<iframe src="https://docs.google.com/gview?url=${e.target.result}" title="test" width="100%" height="100%"></iframe>`;
             document.getElementById(renderOut).insertBefore(span, null);
             if (q != 0) {
               questions.push(q);
